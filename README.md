@@ -1,1 +1,1 @@
-# AdventOfCode2025
+# AdventOfCode
