@@ -5,24 +5,36 @@
 
 using namespace std;
 
-int getJoltage(string bank) {
+unsigned long long getJoltage(string bank) {
     int bankLength = bank.length();
-    int maxJoltage = 0;
-    
-    for(int i=0; i < bankLength - 1; i++) {
-        int firstVal = bank[i] - '0';
-        
-        for(int j=i+1; j<bankLength; j++) {
-            int secondVal = bank[j] - '0';
-            int joltage = firstVal * 10 + secondVal;
-            
-            if(maxJoltage < joltage) {
-                maxJoltage = joltage;
+    int resultLength = bankLength;
+
+    // Odstraò menšie èíslice z¾ava doprava, aby zostalo presne 12 èíslic
+    for (int i = 0; i < bankLength && resultLength > 12; i++) {
+        for (int j = 0; j < bankLength - 1 && resultLength > 12; j++) {
+            if (bank[j] < bank[j + 1]) {
+                bank[j] = 'n';   // oznaè na odstránenie
+                resultLength--;
             }
         }
     }
-    
-    return maxJoltage;
+
+    // Ak ešte stále viac ako 12, odstráò duplicitné alebo zbytoèné èíslice sprava
+    for (int i = bankLength - 1; i >= 0 && resultLength > 12; i--) {
+        if (bank[i] != 'n') {
+            bank[i] = 'n';
+            resultLength--;
+        }
+    }
+
+    // Vytvor výsledok z nepovšimnutých èíslic
+    string bankResult = "";
+    for (char c : bank) {
+        if (c != 'n')
+            bankResult += c;
+    }
+
+    return stoull(bankResult);
 }
 
 int main() {
