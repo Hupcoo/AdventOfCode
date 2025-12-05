@@ -5,12 +5,6 @@
 
 using namespace std;
 
-unsigned int getOccupiedSpaces(int positionX, int positonY, string ) {
-    unsigned int occupiedSpaces = 0;
-    
-    return occupiedSpaces;
-}
-
 int main() {
     int changedRolls = 0;
 	vector<string> rows;
