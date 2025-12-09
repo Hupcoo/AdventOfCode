@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
     vector<string> rows;
-    ifstream fin("day7.txt");
+    ifstream fin("day8.txt");
     string temp;
     while(fin >> temp) 
 		rows.push_back(temp);
